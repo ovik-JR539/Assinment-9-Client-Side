@@ -1,0 +1,147 @@
+
+@import "tailwindcss";
+
+/* Enable class-based dark mode for next-themes */
+@custom-variant dark (&:where(.dark, .dark *));
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    margin: 0;
+    background: #F4F8FC;
+    color: #101D43;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hide the public navbar and footer inside the dashboard */
+body:has(.dashboard-layout) > nav,
+body:has(.dashboard-layout) > footer {
+    display: none;
+}
+
+/* ==================================
+   FIXMATE GLOBAL DARK MODE
+================================== */
+
+/* Main page backgrounds */
+html.dark body {
+    background-color: #0f172a;
+    color: #f8fafc;
+}
+
+/* White backgrounds become dark */
+html.dark [class*="bg-white"] {
+    background-color: #1e293b;
+}
+
+/* Light slate backgrounds become dark */
+html.dark [class*="bg-slate-50"] {
+    background-color: #0f172a;
+}
+
+html.dark [class*="bg-slate-100"] {
+    background-color: #334155;
+}
+
+html.dark [class*="bg-slate-200"] {
+    background-color: #334155;
+}
+
+/* Dark text becomes white */
+html.dark [class*="text-slate-900"],
+html.dark [class*="text-slate-800"],
+html.dark [class*="text-slate-700"] {
+    color: #f8fafc;
+}
+
+/* Medium text becomes light gray */
+html.dark [class*="text-slate-600"],
+html.dark [class*="text-slate-500"] {
+    color: #cbd5e1;
+}
+
+/* Borders */
+html.dark [class*="border-slate-100"],
+html.dark [class*="border-slate-200"],
+html.dark [class*="border-slate-300"] {
+    border-color: #475569;
+}
+
+/* Form inputs */
+html.dark input,
+html.dark textarea,
+html.dark select {
+    background-color: #1e293b;
+    color: #f8fafc;
+    border-color: #475569;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+    color: #94a3b8;
+}
+
+/* Keep orange buttons and accents visible */
+html.dark [class*="bg-orange-500"] {
+    color: white;
+}
+
+
+
+
+/* ==================================
+   FIXMATE - ALL SERVICES AUTO SLIDER
+================================== */
+
+.all-services-track {
+    display: flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    animation: fixmate-move-left 300s linear infinite;
+    will-change: transform;
+}
+
+.all-services-group {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    align-items: stretch;
+    gap: 24px;
+    padding-right: 24px;
+}
+
+/* Move services right to left */
+@keyframes fixmate-move-left {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Pause animation when hovered */
+.all-services-track:hover {
+    animation-play-state: paused;
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    .all-services-track {
+        animation: none;
+    }
+}
+
